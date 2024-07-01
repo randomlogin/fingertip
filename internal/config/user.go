@@ -16,7 +16,7 @@ const (
 	DefaultEthereumEndpoint = "https://mainnet.infura.io/v3/b0933ce6026a4e1e80e89e96a5d095bc"
 )
 
-var DefaultExternalService = []string{"https://sdaneproofs.htools.work/proofs/", "https://sdane.woodburn.au/proofs/"}
+var DefaultExternalService = []string{"https://sdaneproofs.htools.work/proofs/", "https://sdane.woodburn.au/proofs/", "https://sdaneproofs.shakestation.io/proofs/"}
 
 // User Represents user facing configuration
 type User struct {
