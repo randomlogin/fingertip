@@ -128,6 +128,8 @@ github.com/randomlogin/sane v0.0.11 h1:kyfPbJHtQWJDYhsSg9OrZ0/YR8qXqxzCzO1evSmFp
 github.com/randomlogin/sane v0.0.11/go.mod h1:HPQHPiYP6lIs+7yjaJVnohnv5kHHif7lrsWp/JVUFcc=
 github.com/randomlogin/sane v0.0.12 h1:B08IvUfQooD+qlH/4h9J68nKHJg5HHEGMU4SyJRoweQ=
 github.com/randomlogin/sane v0.0.12/go.mod h1:HPQHPiYP6lIs+7yjaJVnohnv5kHHif7lrsWp/JVUFcc=
+github.com/randomlogin/sane v0.0.13 h1:+qrepp3yJWqQWl0YvLnjGq9cGCP9ckIrzGktG4SfNns=
+github.com/randomlogin/sane v0.0.13/go.mod h1:HPQHPiYP6lIs+7yjaJVnohnv5kHHif7lrsWp/JVUFcc=
 github.com/rjeczalik/notify v0.9.3/go.mod h1:gF3zSOrafR9DQEWSE8TjfI9NkooDxbyT4UgRGKZA0lc=
 github.com/sagikazarmark/locafero v0.4.0 h1:HApY1R9zGo4DBgr7dqsTH/JJxLTTsOt7u6keLGt6kNQ=
 github.com/sagikazarmark/locafero v0.4.0/go.mod h1:Pe1W6UlPYUk/+wc/6KFhbORCfqzgYEpgQ3O5fPuL3H4=

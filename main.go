@@ -18,7 +18,6 @@ import (
 	"github.com/emersion/go-autostart"
 	"github.com/pkg/browser"
 	"github.com/randomlogin/sane"
-	"github.com/randomlogin/sane/debuglog"
 	"github.com/randomlogin/sane/resolver"
 	"github.com/randomlogin/sane/sync"
 )
@@ -125,10 +124,6 @@ func autoConfigure(app *App, checked, onBoarded bool) bool {
 }
 
 func main() {
-
-	if os.Getenv("VERBOSE") != "" {
-		debuglog.Logger.Verbose = true
-	}
 
 	var err error
 	app := setupApp()
