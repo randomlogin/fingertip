@@ -6,6 +6,7 @@ on:
       os:
         required: true
         type: string
+        default: macos-latest
   workflow_dispatch:
 
 jobs:
