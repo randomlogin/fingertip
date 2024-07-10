@@ -1,17 +1,17 @@
 name: Build and Package - MacOS (reusable)
 
 on:
-  workflow_call:
-    inputs:
-      os:
-        required: true
-        type: string
-        default: macos-latest
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   build-hnsd:
-    runs-on: ${{inputs.os}}
+    runs-on: macos-latest
 
     steps:
       - name: Checkout hnsd repository
@@ -37,7 +37,7 @@ jobs:
 
   build-fingertip:
     needs: build-hnsd
-    runs-on: ${{inputs.os}}
+    runs-on: macos-latest
 
     steps:
       - name: Checkout repository
