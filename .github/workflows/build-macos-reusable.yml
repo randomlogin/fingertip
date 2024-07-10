@@ -57,13 +57,10 @@ jobs:
           name: hnsd-bin-${{inputs.os}}
           path: builds/macos/Fingertip.app/Contents/MacOS
 
-      - name: Set environment variables
-        run: |
-          echo 'CGO_CFLAGS="-I/usr/local/include"' >> $GITHUB_ENV
-          echo 'CGO_LDFLAGS="-L/usr/local/lib -lgetdns"' >> $GITHUB_ENV
-
       - name: Build fingertip
         run: |
+          export CGO_CFLAGS="-I/usr/local/include"
+          export CGO_LDFLAGS="-L/usr/local/lib -lgetdns"
           chmod +x builds/macos/Fingertip.app/Contents/MacOS/hnsd
           dylibbundler -od -b -x builds/macos/Fingertip.app/Contents/MacOS/hnsd -d builds/macos/Fingertip.app/Contents/Frameworks -p @executable_path/../Frameworks/
           ./builds/macos/build.sh
