@@ -72,8 +72,8 @@ jobs:
       - name: Build fingertip
         run: |
           source $GITHUB_ENV
-          export CGO_CFLAGS="-I/usr/local/include"
-          export CGO_LDFLAGS="-L/usr/local/lib -lgetdns"
+          export CGO_CFLAGS="-I$BREW_PREFIX/include"
+          export CGO_LDFLAGS="-L$BREW_PREFIX/lib -lgetdns"
           echo $CGO_CFLAGS
           echo $CGO_LDFLAGS
           chmod +x builds/macos/Fingertip.app/Contents/MacOS/hnsd
