@@ -7,7 +7,7 @@
 min_macos_version="10.13"
 cflags="-mmacosx-version-min="${min_macos_version}
 working_dir=$(pwd)
-bundle_path="${working_dir}/builds/macos/Fingertip.app/Contents/"
+bundle_path="${working_dir}/builds/macos/Fingertip.app/Contents"
 hnsd_path=${bundle_path}/MacOS/hnsd
 fingertip_path=${bundle_path}/MacOS/fingertip
 lib_dir=${bundle_path}/Frameworks
@@ -32,7 +32,7 @@ dylibbundler -od -b -x "$hnsd_path" -d "$lib_dir" -p @executable_path/../Framewo
 fi
 
 # build fingertip
-CGO_CFLAGS="$cflags $CG_FLAGS" CGO_LDFLAGS="$cflags $CGO_LDFLAGS" go build -trimpath -o "$fingertip_path"
+CGO_CFLAGS="$cflags $CGO_CFLAGS" CGO_LDFLAGS="$cflags $CGO_LDFLAGS" go build -trimpath -o "$fingertip_path"
 
 get_min_version() {
    otool -l $1 | grep LC_VERSION_MIN_MACOSX  -A3 | grep version | xargs | sed s/version// | xargs
