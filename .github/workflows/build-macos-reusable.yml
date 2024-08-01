@@ -51,8 +51,15 @@ jobs:
       - name: Install dependencies
         run: brew install dylibbundler git automake autoconf libtool getdns
 
-      - name: Debug libs
-        run: ls -l /usr/local/lib
+      - name: Verify getdns installation
+        run: |
+          ls -l $(brew --prefix getdns)/include/getdns
+          ls -l $(brew --prefix getdns)/lib
+
+      - name: Set environment variables
+        run: |
+          export BREW_PREFIX=$(brew --prefix)
+          echo "BREW_PREFIX=$BREW_PREFIX" >> $GITHUB_ENV
 
       - name: Download hnsd binary
         uses: actions/download-artifact@v4
@@ -62,8 +69,11 @@ jobs:
 
       - name: Build fingertip
         run: |
+          source $GITHUB_ENV
           export CGO_CFLAGS="-I/usr/local/include"
           export CGO_LDFLAGS="-L/usr/local/lib -lgetdns"
+          echo $CGO_CFLAGS
+          echo $CGO_LDFLAGS
           chmod +x builds/macos/Fingertip.app/Contents/MacOS/hnsd
           dylibbundler -od -b -x builds/macos/Fingertip.app/Contents/MacOS/hnsd -d builds/macos/Fingertip.app/Contents/Frameworks -p @executable_path/../Frameworks/
           ./builds/macos/build.sh
