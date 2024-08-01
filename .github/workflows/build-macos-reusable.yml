@@ -53,6 +53,7 @@ jobs:
 
       - name: Verify getdns installation
         run: |
+          echo $(brew --prefix getdns)
           ls -l $(brew --prefix getdns)/include/getdns
           ls -l $(brew --prefix getdns)/lib
 
