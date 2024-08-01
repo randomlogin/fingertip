@@ -59,8 +59,9 @@ jobs:
 
       - name: Set environment variables
         run: |
-          export BREW_PREFIX=$(brew --prefix)
+          export BREW_PREFIX=$(brew --prefix getdns)
           echo "BREW_PREFIX=$BREW_PREFIX" >> $GITHUB_ENV
+          echo $GITHUB_ENV
 
       - name: Download hnsd binary
         uses: actions/download-artifact@v4
