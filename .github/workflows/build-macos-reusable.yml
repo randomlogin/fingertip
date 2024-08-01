@@ -51,6 +51,9 @@ jobs:
       - name: Install dependencies
         run: brew install dylibbundler git automake autoconf libtool getdns
 
+      - name: Debug libs
+        run: ls -l /usr/local/lib
+
       - name: Download hnsd binary
         uses: actions/download-artifact@v4
         with:
