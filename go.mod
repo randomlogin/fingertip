@@ -10,6 +10,7 @@ require (
 	github.com/getlantern/systray v1.1.0
 	github.com/miekg/dns v1.1.58
 	github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c
+	github.com/randomlogin/sane v0.0.15
 	github.com/spf13/viper v1.18.2
 	github.com/sqweek/dialog v0.0.0-20240226140203-065105509627
 	golang.org/x/crypto v0.21.0
@@ -55,7 +56,6 @@ require (
 	github.com/oxtoacart/bpool v0.0.0-20190530202638-03653db5a59c // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/pelletier/go-toml/v2 v2.1.1 // indirect
-	github.com/randomlogin/sane v0.0.15 // indirect
 	github.com/rjeczalik/notify v0.9.3 // indirect
 	github.com/sagikazarmark/locafero v0.4.0 // indirect
 	github.com/sagikazarmark/slog-shim v0.1.0 // indirect
