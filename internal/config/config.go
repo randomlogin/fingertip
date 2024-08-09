@@ -109,47 +109,6 @@ func (c *App) getOrCreateCA() (string, string, error) {
 	return certPath, keyPath, nil
 }
 
-func (c *App) getOrCreateCA2() (string, string, error) {
-	certPath := path.Join(c.Path, CertFileName)
-	keyPath := path.Join(c.Path, CertKeyFileName)
-
-	if _, err := os.Stat(certPath); err != nil {
-		if _, err := os.Stat(keyPath); err != nil {
-			ca, priv, err := sane.NewAuthority(CertName, CertName, 365*24*time.Hour, tld.NameConstraints)
-			if err != nil {
-				return "", "", fmt.Errorf("couldn't generate CA: %v", err)
-			}
-
-			certOut, err := os.OpenFile(certPath, os.O_CREATE|os.O_WRONLY, 0644)
-			if err != nil {
-				return "", "", fmt.Errorf("couldn't create CA file: %v", err)
-			}
-			defer certOut.Close()
-
-			pem.Encode(certOut, &pem.Block{
-				Type:  "CERTIFICATE",
-				Bytes: ca.Raw,
-			})
-
-			privOut := bytes.NewBuffer([]byte{})
-			pem.Encode(privOut, &pem.Block{
-				Type:  "RSA PRIVATE KEY",
-				Bytes: x509.MarshalPKCS1PrivateKey(priv),
-			})
-
-			kOut, err := os.OpenFile(keyPath, os.O_CREATE|os.O_WRONLY, 0600)
-			if err != nil {
-				return "", "", fmt.Errorf("couldn't create CA private key file: %v", err)
-			}
-			defer kOut.Close()
-
-			kOut.Write(privOut.Bytes())
-			return certPath, keyPath, nil
-		}
-	}
-	return certPath, keyPath, nil
-}
-
 func loadX509KeyPair(certFile, keyFile string) (tls.Certificate, error) {
 	certPEMBlock, err := os.ReadFile(certFile)
 	if err != nil {
