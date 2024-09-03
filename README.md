@@ -49,16 +49,6 @@ $ ./builds/macos/Fingertip.app/Contents/MacOS/fingertip
         
 Configure your IDE to output to this directory or continue to use `build.sh` when making changes (it will only build hnsd once).
 
-### Windows
-
-Follow [hnsd](https://github.com/handshake-org/hnsd) build instructions for windows. Copy hnsd.exe binary and its dependencies (libcrypto, libssl and libunbound dlls) into the `fingertip/builds/windows` directory.
-You no longer need to use MSYS shell.
-
-```
-$ choco install mingw
-$ go build -trimpath -o ./builds/windows/  -ldflags "-H windowsgui"
-```
-
 ### Linux
 
 Follow [hnsd](https://github.com/handshake-org/hnsd) build instructions for Linux. Copy hnsd binary into the `fingertip/builds/linux/appdir/usr/bin` directory.
@@ -67,8 +57,19 @@ Follow [hnsd](https://github.com/handshake-org/hnsd) build instructions for Linu
 $ go build -trimpath -o ./builds/linux/appdir/usr/bin/
 ```
 
+To create an AppImage run 
+
+```
+bash builds/linux/create_appimage.sh 
+```
+
+### Windows
+
+Due to the [difference](https://github.com/handshake-org/hnsd/issues/128) in hnsd behaviour on Windows and other platforms (and overall complexity of building for windows),
+Windows is not supported. This may change in future. 
+
 
 ## Credits
-Fingertip uses [hnsd](https://github.com/handshake-org/hnsd) a lightweight Handshake resolver, [sane](https://github.com/randomlogin/sane) for TLS support and [go-ethereum](https://github.com/ethereum/go-ethereum) for .eth and Ethereum [HIP-5](https://github.com/handshake-org/HIPs/blob/master/HIP-0005.md) lookups.
+Fingertip uses [hnsd](https://github.com/handshake-org/hnsd) a lightweight Handshake resolver, [sane](https://github.com/randomlogin/sane) and [getdns](https://getdnsapi.net/) for TLS support and [go-ethereum](https://github.com/ethereum/go-ethereum) for .eth and Ethereum [HIP-5](https://github.com/handshake-org/HIPs/blob/master/HIP-0005.md) lookups.
 
 The name "fingertip" was stolen from [@pinheadmz](https://github.com/pinheadmz)

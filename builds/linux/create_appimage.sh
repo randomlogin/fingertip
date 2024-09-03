@@ -21,4 +21,5 @@ if [ ! -f ./linuxdeployqt-continuous-x86_64.AppImage ]; then
 fi
 
 # Run linuxdeployqt to create the AppImage
+./linuxdeployqt-continuous-x86_64.AppImage builds/linux/appdir/usr/bin/hnsd -appimage -unsupported-allow-new-glibc -verbose=3
 ./linuxdeployqt-continuous-x86_64.AppImage builds/linux/appdir/usr/bin/fingertip -appimage -always-overwrite -unsupported-allow-new-glibc -verbose=3

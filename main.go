@@ -22,7 +22,7 @@ import (
 	"github.com/randomlogin/sane/sync"
 )
 
-const Version = "0.0.3"
+const Version = "0.0.4"
 
 type App struct {
 	server           *http.Server
