@@ -45,7 +45,7 @@ $ git clone https://github.com/imperviousinc/fingertip
 ### MacOS
 
 ```
-$ brew install dylibbundler git automake autoconf libtool unbound
+$ brew install dylibbundler git automake autoconf libtool unbound getdns
 $ git clone https://github.com/randomlogin/fingertip
 $ cd fingertip && ./builds/macos/build.sh
 ```

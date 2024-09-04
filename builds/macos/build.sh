@@ -32,6 +32,9 @@ dylibbundler -od -b -x "$hnsd_path" -d "$lib_dir" -p @executable_path/../Framewo
 fi
 
 # build fingertip
+BREW_PREFIX=$(brew --prefix getdns)
+CGO_CFLAGS="-I$BREW_PREFIX/include"
+CGO_LDFLAGS="-L$BREW_PREFIX/lib -lgetdns"
 CGO_CFLAGS="$cflags $CGO_CFLAGS" CGO_LDFLAGS="$cflags $CGO_LDFLAGS" go build -trimpath -o "$fingertip_path"
 
 get_min_version() {
