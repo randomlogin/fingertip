@@ -4,12 +4,20 @@
 
 Fingertip is a menubar app that runs a [lightweight decentralized resolver](https://github.com/handshake-org/hnsd) to resolve names from the [Handshake](https://handshake.org) root zone. It can also resolve names from external namespaces such as the Ethereum Name System. Fingertip integrates with [sane](https://github.com/randomlogin/sane) to provide TLS support without relying on a centralized certificate authority. 
 
+For handshake domains fingertip can be thought as a user-friendly wrapper of SANE, it uses hardcoded community-hosted external proof services, and DNS over HTTPS for name resolution. An advanced user is welcome to use [sane](https://github.com/randomlogin/sane) directly.
+
 
 <img width="600" src="https://user-images.githubusercontent.com/41967894/127166063-fedf072c-fa5e-45e3-acac-bfb46f256831.png" />
 
 ## Install
 
 You can use a pre-built binary from releases or build your own from source.
+
+To run pre-build AppImage on Linux you might need `libfuse`:
+
+```
+apt install libfuse2`
+```
 
 ## Configuration
 You can set these as environment variables prefixed with `FINGERTIP_` or store it in the app config directory as `fingertip.env`
