@@ -20,7 +20,7 @@ git clone https://github.com/handshake-org/hnsd "$tmp_dir"
 cd "$tmp_dir" || exit
 
 echo "Building hnsd ..."
-./autogen.sh && ./configure
+./autogen.sh && ./configure --with-unbound=$(brew --prefix) 
 make CFLAGS=$cflags -j 10
 cp "${tmp_dir}/hnsd" "$hnsd_path"
 
