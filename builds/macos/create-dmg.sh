@@ -1,4 +1,4 @@
-if [ ! -f Fingertip.app ]; then
+if [ ! -d Fingertip.app ]; then
 	echo "Fingertip.app not found, try to rebuild"
 	exit 1
 fi
