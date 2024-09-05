@@ -36,11 +36,7 @@ RECURSIVE_ADDRESS=127.0.0.1:9592
 
 ## Build from source
 
-Go 1.16+ is required.
-
-```
-$ git clone https://github.com/imperviousinc/fingertip
-```
+Go 1.21+ is required.
 
 ### MacOS
 
@@ -57,6 +53,7 @@ $ ./builds/macos/Fingertip.app/Contents/MacOS/fingertip
         
 Configure your IDE to output to this directory or continue to use `build.sh` when making changes (it will only build hnsd once).
 
+
 ### Linux
 
 Follow [hnsd](https://github.com/handshake-org/hnsd) build instructions for Linux. Copy hnsd binary into the `fingertip/builds/linux/appdir/usr/bin` directory.
@@ -65,7 +62,7 @@ Follow [hnsd](https://github.com/handshake-org/hnsd) build instructions for Linu
 $ go build -trimpath -o ./builds/linux/appdir/usr/bin/
 ```
 
-To create an AppImage run 
+To create an AppImage run the following script: 
 
 ```
 bash builds/linux/create_appimage.sh 
