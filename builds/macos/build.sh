@@ -37,6 +37,9 @@ CGO_CFLAGS="-I$BREW_PREFIX/include"
 CGO_LDFLAGS="-L$BREW_PREFIX/lib -lgetdns"
 CGO_CFLAGS="$cflags $CGO_CFLAGS" CGO_LDFLAGS="$cflags $CGO_LDFLAGS" go build -trimpath -o "$fingertip_path"
 
+# bundle libs
+dylibbundler -od -b -x "$fingertip_path" -d "$lib_dir" -p @executable_path/../Frameworks/
+
 get_min_version() {
    otool -l $1 | grep LC_VERSION_MIN_MACOSX  -A3 | grep version | xargs | sed s/version// | xargs
 }
