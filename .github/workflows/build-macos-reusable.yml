@@ -77,9 +77,7 @@ jobs:
           echo $CGO_CFLAGS
           echo $CGO_LDFLAGS
           chmod +x builds/macos/Fingertip.app/Contents/MacOS/hnsd
-          dylibbundler -od -b -x builds/macos/Fingertip.app/Contents/MacOS/hnsd -d builds/macos/Fingertip.app/Contents/Frameworks -p @executable_path/../Frameworks/
-          ./builds/macos/build.sh
-          dylibbundler -od -b -x builds/macos/Fingertip.app/Contents/MacOS/fingertip -d builds/macos/Fingertip.app/Contents/Frameworks -p @executable_path/../Frameworks/
+          ./builds/macos/build.sh          
           ls -l builds/macos
           ls -l builds/macos/Fingertip.app/Contents/MacOS
           ls -l builds/macos/Fingertip.app/Contents/Frameworks
