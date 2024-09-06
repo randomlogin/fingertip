@@ -1,4 +1,4 @@
-name: Build and Package - MacOS (reusable)
+name: Build and Package - MacOS (arm)
 
 on:
   push:
@@ -51,11 +51,6 @@ jobs:
       - name: Install dependencies
         run: brew install dylibbundler git automake autoconf libtool getdns
 
-      - name: Verify getdns installation
-        run: |
-          echo $(brew --prefix getdns)
-          ls -l $(brew --prefix getdns)/include/getdns
-          ls -l $(brew --prefix getdns)/lib
 
       - name: Set environment variables
         run: |
