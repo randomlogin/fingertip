@@ -70,8 +70,8 @@ bash builds/linux/create_appimage.sh
 
 ### Windows
 
-Due to the [difference](https://github.com/handshake-org/hnsd/issues/128) in hnsd behaviour on Windows and other platforms (and overall complexity of building for windows),
-Windows is not supported. This may change in future. 
+Due to the [difference](https://github.com/handshake-org/hnsd/issues/128) in hnsd behaviour on Windows and other platforms (and overall complexity of building for windows), stateless DANE is not supported on Windows.
+The version from the [v0.0.3 release](https://github.com/imperviousinc/fingertip/releases/tag/v0.0.3) should be used for usual DANE.
 
 
 ## Credits
