@@ -212,8 +212,8 @@ github.com/prometheus/common v0.32.1 h1:hWIdL3N2HoUx3B8j3YN9mWor0qhY/NlEKZEaXxuI
 github.com/prometheus/common v0.32.1/go.mod h1:vu+V0TpY+O6vW9J44gczi3Ap/oXXR10b+M/gUGO4Hls=
 github.com/prometheus/procfs v0.7.3 h1:4jVXhlkAyzOScmCkXBTOLRLTz8EeU+eyjrwB/EPq0VU=
 github.com/prometheus/procfs v0.7.3/go.mod h1:cz+aTbrPOrUb4q7XlbU9ygM+/jj0fzG6c1xBZuNvfVA=
-github.com/randomlogin/sane v0.0.16 h1:v+HSG6ORjdNGPdoWy9ARiQSyuFCqGge0ebtdWmZANEM=
-github.com/randomlogin/sane v0.0.16/go.mod h1:cs8OvNinyXb9FgWgXLWIkws45q9ZoEaywBZKIcmyRtk=
+github.com/randomlogin/sane v0.0.17 h1:ZdOquF1+3M1CMoIA49+8xStfa1r5+ncxLUfrzx1qvfU=
+github.com/randomlogin/sane v0.0.17/go.mod h1:cs8OvNinyXb9FgWgXLWIkws45q9ZoEaywBZKIcmyRtk=
 github.com/rivo/uniseg v0.2.0 h1:S1pD9weZBuJdFmowNwbpi7BJ8TNftyUImj/0WQi72jY=
 github.com/rivo/uniseg v0.2.0/go.mod h1:J6wj4VEh+S6ZtnVlnTBMWIodfgj8LQOQFoIToxlJtxc=
 github.com/rogpeppe/go-internal v1.9.0 h1:73kH8U+JUqXU8lRuOHeVHaa/SZPifC7BkcraZVejAe8=

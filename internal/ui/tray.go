@@ -10,14 +10,19 @@ import (
 )
 
 var (
-	OnExit        func()
-	OnStart       func()
-	OnAutostart   func(checked bool) bool
-	OnConfigureOS func(checked bool) bool
-	OnOpenHelp    func()
-	OnStop        func()
-	OnReady       func()
-	Data          State
+	InitializeTray  func() string
+	OnExit          func()
+	OnStart         func()
+	OnAutostart     func(checked bool) bool
+	OnConfigureOS   func(checked bool) bool
+	OnOpenHelp      func()
+	OnStop          func()
+	OnReady         func()
+	OnBackendChoice func(backend string)
+	Data            State
+
+	LetsdaneHandler func()
+	SaneHandler     func()
 )
 
 func Loop() {
@@ -29,6 +34,7 @@ type State struct {
 	runToggle   *systray.MenuItem
 	openAtLogin *systray.MenuItem
 	options     *systray.MenuItem
+	backend     *systray.MenuItem
 	quit        *systray.MenuItem
 
 	autoConfig *systray.MenuItem
@@ -126,10 +132,23 @@ func (s *State) initMenu() {
 	s.options = systray.AddMenuItem("Options", "")
 
 	s.autoConfig = s.options.AddSubMenuItemCheckbox("Auto configure", "", false)
+	s.backend = s.options.AddSubMenuItem("Backend", "")
+
+	letsdaneChoice := s.backend.AddSubMenuItemCheckbox("Letsdane", "", false)
+	saneChoice := s.backend.AddSubMenuItemCheckbox("Stateless DANE", "", false)
+
 	s.openSetup = s.options.AddSubMenuItem("Help", "")
 
 	s.quit = systray.AddMenuItem("Quit", "")
 
+	backend := InitializeTray()
+	if backend == "letsdane" {
+		letsdaneChoice.Check()
+		saneChoice.Uncheck()
+	} else {
+		saneChoice.Check()
+		letsdaneChoice.Uncheck()
+	}
 	OnReady()
 
 	go func() {
@@ -146,6 +165,24 @@ func (s *State) initMenu() {
 				s.SetOpenAtLogin(OnAutostart(s.openAtLogin.Checked()))
 			case <-s.autoConfig.ClickedCh:
 				s.SetAutoConfig(OnConfigureOS(s.autoConfig.Checked()))
+			case <-letsdaneChoice.ClickedCh:
+				started := s.Started()
+				letsdaneChoice.Check()
+				saneChoice.Uncheck()
+				OnBackendChoice("letsdane")
+				OnStart = LetsdaneHandler
+				if started {
+					OnStart()
+				}
+			case <-saneChoice.ClickedCh:
+				started := s.Started()
+				saneChoice.Check()
+				letsdaneChoice.Uncheck()
+				OnBackendChoice("sane")
+				OnStart = SaneHandler
+				if started {
+					OnStart()
+				}
 			case <-s.openSetup.ClickedCh:
 				OnOpenHelp()
 				continue

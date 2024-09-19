@@ -12,7 +12,8 @@ import (
 const (
 	DefaultProxyAddr        = "127.0.0.1:9590"
 	DefaultRootAddr         = "127.0.0.1:9591"
-	DefaultRecursiveAddr    = "https://hnsdoh.com/dns-query"
+	DefaultRecursiveAddr    = "127.0.0.1:9592"
+	DefaultDOHUrl           = "https://hnsdoh.com/dns-query"
 	DefaultEthereumEndpoint = "https://mainnet.infura.io/v3/b0933ce6026a4e1e80e89e96a5d095bc"
 )
 
@@ -26,10 +27,12 @@ type User struct {
 	EthereumEndpoint string `mapstructure:"ETHEREUM_ENDPOINT"`
 }
 
+// TODO create a type for the backend, not use string
 // Stored config
 type Store struct {
 	Version    string `json:"version"`
 	AutoConfig bool   `json:"auto_config"`
+	Backend    string `json:"backend"`
 
 	path string
 }
@@ -42,6 +45,7 @@ func readStore(path, version string, old *Store) (*Store, error) {
 		zero = &Store{
 			AutoConfig: false,
 			Version:    version,
+			Backend:    "sane",
 			path:       path,
 		}
 	}
@@ -58,6 +62,10 @@ func readStore(path, version string, old *Store) (*Store, error) {
 	}
 	if err := json.Unmarshal(b, zero); err != nil {
 		return nil, fmt.Errorf("failed parsing app config: %v", err)
+	}
+
+	if zero.Backend == "letsdane" {
+
 	}
 	return zero, nil
 }
@@ -108,5 +116,6 @@ func ReadUserConfig(path string) (config User, err error) {
 	if err != nil {
 		err = fmt.Errorf("error reading user config: %v", err)
 	}
+
 	return
 }

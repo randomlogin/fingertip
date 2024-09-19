@@ -25,12 +25,13 @@ const CertKeyFileName = "private.key"
 const CertName = "DNSSEC"
 
 type App struct {
-	Path      string
-	CertPath  string
-	keyPath   string
-	Proxy     sane.Config
-	ProxyAddr string
-	Version   string
+	Path        string
+	CertPath    string
+	keyPath     string
+	DNSProcPath string
+	Proxy       sane.Config
+	ProxyAddr   string
+	Version     string
 
 	Store *Store
 	Debug Debugger
@@ -51,6 +52,7 @@ func getOrCreateDir() (string, error) {
 
 	return p, nil
 }
+
 func (c *App) getOrCreateCA() (string, string, error) {
 	certPath := path.Join(c.Path, CertFileName)
 	keyPath := path.Join(c.Path, CertKeyFileName)
@@ -221,6 +223,7 @@ func (c *contentHandler) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 	if req.URL.Path == "" || req.URL.Path == "/" {
 		url := GetProxyURL(c.config.ProxyAddr)
 		statusTmpl.Execute(rw, onBoardingTmplData{
+			Backend:       c.config.Store.Backend,
 			CertPath:      c.config.CertPath,
 			CertLink:      url + "/" + CertFileName,
 			PACLink:       url + "/proxy.pac",

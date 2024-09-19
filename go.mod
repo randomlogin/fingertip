@@ -10,7 +10,7 @@ require (
 	github.com/getlantern/systray v1.1.0
 	github.com/miekg/dns v1.1.58
 	github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c
-	github.com/randomlogin/sane v0.0.16
+	github.com/randomlogin/sane v0.0.17
 	github.com/spf13/viper v1.18.2
 	github.com/sqweek/dialog v0.0.0-20240226140203-065105509627
 	golang.org/x/crypto v0.21.0

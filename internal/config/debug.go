@@ -30,6 +30,7 @@ type Debugger struct {
 	dnsProbeErr        error
 	checkCert          func() bool
 	checkSynced        func() bool
+	checkBackend       func() string
 
 	blockHeight uint64
 
@@ -38,6 +39,7 @@ type Debugger struct {
 }
 
 type DebugInfo struct {
+	Backend       string `json:"backend"`
 	BlockHeight   uint64 `json:"blockHeight"`
 	ProbeURL      string `json:"proxyProbeUrl"`
 	ProbeReached  bool   `json:"proxyProbeReached"`
@@ -158,6 +160,13 @@ func (d *Debugger) SetCheckSynced(s func() bool) {
 	d.checkSynced = s
 }
 
+func (d *Debugger) SetCheckBackend(s func() string) {
+	d.Lock()
+	defer d.Unlock()
+
+	d.checkBackend = s
+}
+
 func (d *Debugger) NewProbe() {
 	d.Lock()
 	d.proxyProbeReached = false
@@ -182,7 +191,9 @@ func (d *Debugger) GetInfo() DebugInfo {
 	if d.dnsProbeErr != nil {
 		err = d.dnsProbeErr.Error()
 	}
+
 	return DebugInfo{
+		Backend:            d.checkBackend(),
 		BlockHeight:        d.blockHeight,
 		ProbeURL:           "http://" + d.proxyProbeDomain,
 		ProbeReached:       d.proxyProbeReached,
