@@ -72,6 +72,6 @@ jobs:
       - name: Store fingertip appimage
         uses: actions/upload-artifact@v4
         with:
-          name: fingertip-appimage
+          name: Fingertip-${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}
           path: ./builds/linux/Fingertip*.AppImage
           if-no-files-found: error

@@ -93,6 +93,6 @@ jobs:
       - name: Store fingertip dmg
         uses: actions/upload-artifact@v4
         with:
-          name: fingertip-dmg-${{runner.os}}
+          name: Fingertip-${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}
           path: ./builds/macos/Fingertip.dmg
           if-no-files-found: error
