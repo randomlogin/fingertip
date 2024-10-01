@@ -66,6 +66,7 @@ jobs:
         id: run_version
         run: |
           VERSION=$(./build/linux/appdir/user/bin/fingertip --version)
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV  # Store version in the environment variable
 
       - name: Store fingertip binary
         uses: actions/upload-artifact@v4
