@@ -88,16 +88,21 @@ jobs:
           hdiutil create -format UDZO -srcfolder ./Fingertip.app ./Fingertip.dmg
           ls -l
 
+      - name: Get version
+        id: run_version
+        run: |
+          VERSION=$(./build/linux/appdir/user/bin/fingertip --version)
+
       - name: Store fingertip binary
         uses: actions/upload-artifact@v4
         with:
-          name: fingertip-bin-${{inputs.os}}
+          name: fingertip-bin-${{runner.os}}
           path: ./builds/macos/Fingertip.app/Contents/MacOS/fingertip
           if-no-files-found: error
 
       - name: Store fingertip dmg
         uses: actions/upload-artifact@v4
         with:
-          name: Fingertip-${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}
+          name: Fingertip-${{ env.VERSION }}-${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}
           path: ./builds/macos/Fingertip.dmg
           if-no-files-found: error
