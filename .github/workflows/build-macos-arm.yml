@@ -86,7 +86,7 @@ jobs:
       - name: Get version
         id: run_version
         run: |
-          VERSION=$(./build/linux/appdir/user/bin/fingertip --version)
+          VERSION=$(./builds/macos/Fingertip.app/Contents/MacOS/fingertip --version)
 
       - name: Store fingertip binary
         uses: actions/upload-artifact@v4
