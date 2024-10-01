@@ -65,7 +65,7 @@ jobs:
       - name: Get version
         id: run_version
         run: |
-          VERSION=$(./build/linux/appdir/user/bin/fingertip --version)
+          VERSION=$(./builds/linux/appdir/user/bin/fingertip --version)
           echo "VERSION=${VERSION}" >> $GITHUB_ENV  # Store version in the environment variable
 
       - name: Store fingertip binary
