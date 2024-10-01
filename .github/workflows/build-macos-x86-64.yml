@@ -85,7 +85,7 @@ jobs:
       - name: Create DMG
         working-directory: ./builds/macos
         run: |
-          hdiutil create -format UDZO -srcfolder ./Fingertip.app ./Fingertip.dmg
+          hdiutil create -format UDZO -srcfolder ./Fingertip.app ./Fingertip-${{ env.VERSION }}-${{ runner.os }}-${{ runner.arch }.dmg
           ls -l
 
       - name: Get version
@@ -93,7 +93,6 @@ jobs:
         run: |
           VERSION=$(./builds/macos/Fingertip.app/Contents/MacOS/fingertip --version)
           echo "VERSION=${VERSION}" >> $GITHUB_ENV  # Store version in the environment variable
-
 
       - name: Store fingertip binary
         uses: actions/upload-artifact@v4
@@ -105,6 +104,6 @@ jobs:
       - name: Store fingertip dmg
         uses: actions/upload-artifact@v4
         with:
-          name: Fingertip-${{ env.VERSION }}-${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}
-          path: ./builds/macos/Fingertip.dmg
+          name: Fingertip-${{ env.VERSION }}-${{ runner.os }}-${{ runner.arch }}
+          path: ./builds/macos/Fingertip-${{ env.VERSION }}-${{ runner.os }}-${{ runner.arch }.dmg
           if-no-files-found: error
