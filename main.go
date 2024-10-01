@@ -7,6 +7,7 @@ import (
 	"fingertip/internal/config/auto"
 	"fingertip/internal/resolvers"
 	"fingertip/internal/resolvers/proc"
+	"flag"
 
 	"fingertip/internal/ui"
 	"fmt"
@@ -24,7 +25,7 @@ import (
 	"github.com/randomlogin/sane/sync"
 )
 
-const Version = "0.0.4"
+const Version = "0.0.4-beta2"
 
 type App struct {
 	proc             *proc.HNSProc
@@ -151,6 +152,13 @@ func autoConfigure(app *App, checked, onBoarded bool) bool {
 }
 
 func main() {
+	showVersion := flag.Bool("version", false, "Print the version and exit")
+	flag.Parse()
+
+	if *showVersion {
+		fmt.Printf("%s\n", Version)
+		os.Exit(0)
+	}
 
 	var err error
 	app := setupApp()
