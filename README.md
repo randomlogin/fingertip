@@ -9,6 +9,25 @@ For handshake domains fingertip can be thought as a user-friendly wrapper of SAN
 
 <img width="600" src="https://user-images.githubusercontent.com/41967894/127166063-fedf072c-fa5e-45e3-acac-bfb46f256831.png" />
 
+## Backends
+
+Currently there are two available backends: [letsdane](https://github.com/buffrr/letsdane) and [sane](https://github.com/randomlogin/sane). It's possible to switch between them in the tray options.
+
+Letsdane runs with an [hnsd](https://github.com/handshake-org/hnsd) instance which resolves handshake domains and verifies DANE records.
+SANE uses [Stateless DANE](https://github.com/handshake-org/HIPs/blob/master/HIP-0017.md) and runs hnsd once a day (for about 10 second) to download the latest tree roots and verify certificate proofs against them.
+
+#### SANE's external services
+
+To comply with SANE, the website hosted at a handshake domain has to provide relevant proof data. Proof allows to verify that a TLSA record, which contains information about certificate that should be used by a domain name, corresponds to a recent block in a blockchain. 
+
+To keep this information up-to-date, the website owner has to periodically update (re-generate) certificate. Updating certificate might be cumbersome for some of the site owners, so to address this problem there are 'external services' which construct the needed proofs, thus allowing the domain owner not to update the certificate. Though if the certificate has all the needed information, the request to the external service is not done at all.
+
+External services cannot provide false information (it's impossible to provide a false proof), but they can be down or timeout. In the current default settings of fingertip there are [3 hardcoded community-hosted external services](https://github.com/randomlogin/sane?tab=readme-ov-file#external-service).
+
+To sum up:
+- Letsdane: takes more resources, but completely independent
+- SANE: more lightweight, but makes a request for non-SANE-compliant certificates.
+
 ## Install
 
 You can use a pre-built binary from releases or build your own from source.
