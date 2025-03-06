@@ -14,7 +14,8 @@ For handshake domains fingertip can be thought as a user-friendly wrapper of SAN
 Currently there are two available backends: [letsdane](https://github.com/buffrr/letsdane) and [sane](https://github.com/randomlogin/sane). It's possible to switch between them in the tray options.
 
 Letsdane runs with an [hnsd](https://github.com/handshake-org/hnsd) instance which resolves handshake domains and verifies DANE records.
-SANE uses [Stateless DANE](https://github.com/handshake-org/HIPs/blob/master/HIP-0017.md) and runs hnsd once a day (for about 10 second) to download the latest tree roots and verify certificate proofs against them.
+
+SANE uses [Stateless DANE](https://github.com/handshake-org/HIPs/blob/master/HIP-0017.md) and runs hnsd once a day (for about 10 seconds) to download the latest tree roots and verify certificate proofs against them.
 
 #### SANE's external services
 
